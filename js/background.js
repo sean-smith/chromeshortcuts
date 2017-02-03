@@ -41,24 +41,6 @@ chrome.omnibox.onInputChanged.addListener(
     suggest(suggestions);
 });
 
-chrome.webRequest.onBeforeRequest.addListener(function(request) {
-  var results = search_url.exec(request.url)[1].trim();
-  if (results in aliases) {
-      return {
-        redirectUrl : aliases[results]
-      };
-  }
-}, {urls : ["<all_urls>"]}, ["blocking"]);
-
-
-
-// Keyboard Shortcut to open Omnibox Alias
-chrome.commands.onCommand.addListener(function(command) {
-  if (command == 'open-omnibox-alias') {
-    console.log('hi');
-  }
-});
-
 // This event is fired with the user accepts the input in the omnibox.
 chrome.omnibox.onInputEntered.addListener(
   function(text) {

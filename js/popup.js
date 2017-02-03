@@ -29,6 +29,11 @@ $(function() {
 		chrome.tabs.update({ url: "https://google.com" } ); 
 	});
 
+	$("#github").click(function() {
+		chrome.tabs.update({ url: "https://github.com/sean-smith/chrome_shortcuts" } );
+		return false; 
+	});
+
 	// Form submission handler
 	$("#new_alias").submit(function(event) {
 		var alias = $("#alias").val();

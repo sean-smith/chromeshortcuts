@@ -15,8 +15,8 @@
 	"commands": {
 		"open-omnibox-alias": {
 			"suggested_key": {
-				"default": "Ctrl+h",
-				"mac": "Command+h"
+				"default": "Ctrl+H",
+				"mac": "Command+H"
 			},
 			"description": "Opens Omnibox Alias."
 		}
