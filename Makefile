@@ -7,7 +7,6 @@ zip:
 	zip -r alias.zip . \
 		--exclude \*.git\* \
 		--exclude \*Makefile \
-		--exclude \*omnibox_640x400.png \
 		--exclude \*README.md \
 		--exclude \*store_assets\* \
 		--exclude \*.DS_Store
