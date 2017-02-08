@@ -1,25 +1,14 @@
 {
-	"name": "Omnibox Alias",
+	"name": "Custom Chrome Shortcut Manager",
+	"short_name": "Omnibox Alias",
 	"description" : "To use, type 'go' into the search bar.",
-	"version": "1.0",
+	"version": "1.0.1",
 	"permissions": [
-		"webRequest", 
-		"webRequestBlocking", 
-		"<all_urls>",
 		"storage",
 		"activeTab"
 	],
 	"background": {
 		"scripts": ["js/background.js"]
-	},
-	"commands": {
-		"open-omnibox-alias": {
-			"suggested_key": {
-				"default": "Ctrl+H",
-				"mac": "Command+H"
-			},
-			"description": "Opens Omnibox Alias."
-		}
 	},
 	"browser_action": {
 		"default_title": "Omnibox Alias",
@@ -33,6 +22,5 @@
 		"128": "img/terminal_128x128.png"
 	},
 	"manifest_version": 2,
-	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
-
+	"content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'"
 }

@@ -23,12 +23,6 @@ $(function() {
 		});
 	});
 
-	$(".url").click(function(event) {
-		// var url = $(this).text();
-		alert("hi");
-		chrome.tabs.update({ url: "https://google.com" } ); 
-	});
-
 	$("#github").click(function() {
 		chrome.tabs.update({ url: "https://github.com/sean-smith/chrome_shortcuts" } );
 		return false; 
@@ -95,3 +89,13 @@ function remove(alias) {
 function insert(alias, url) {
 	$("#aliases").append(`<div class='row'><div class='pill alias'>${alias}</div><img class='icon arrow' src='img/arrow_right.svg'><div class='pill url'>${url}</div></div>`);
 }
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-91305548-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
