@@ -9,4 +9,5 @@ zip:
 		--exclude \*Makefile \
 		--exclude \*omnibox_640x400.png \
 		--exclude \*README.md \
-		--exclude \*store_assets\*
+		--exclude \*store_assets\* \
+		--exclude \*.DS_Store
