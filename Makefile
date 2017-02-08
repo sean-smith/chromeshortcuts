@@ -8,4 +8,5 @@ zip:
 		--exclude \*.git\* \
 		--exclude \*Makefile \
 		--exclude \*omnibox_640x400.png \
-		--exclude \*README.md
+		--exclude \*README.md \
+		--exclude \*store_assets\*
