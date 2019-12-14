@@ -1,7 +1,9 @@
 # Omnibox Alias
 
-To contribute, clone the repo:
+Originally cloned from:
 
 	git clone https://github.com/sean-smith/chrome_shortcuts
 
-Then go to [chrome://extensions/](chrome://extensions/) and load in the folder.
+Just added a 'remove' feature and fixed some layout bugs.
+
+Please continue to contribue to this wonderful extension!
