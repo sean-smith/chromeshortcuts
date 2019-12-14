@@ -103,6 +103,15 @@ h5 {
   background-color: #9e1a1a;
 }
 
+.warning:hover {
+  background-color: #a2b828;
+}
+
+.warning {
+  background-color: #b3c838;
+  border-color: #93a114;
+}
+
 input {
   font-size: 14px;
   border-radius: 4px;

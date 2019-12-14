@@ -72,9 +72,12 @@ function get() {
   });
 }
 
-function clear() {
+function clear(refillObj) {
   chrome.storage.sync.clear(function() {
     console.log("cleared!");
+    if (refillObj) {
+      Object.keys(refillObj).forEach(el => set(el, refillObj[el]));
+    }
   });
   $("#aliases").html("");
 }
@@ -83,6 +86,45 @@ function remove(alias) {
   chrome.storage.sync.remove(alias, function() {
     $("#" + alias).remove();
   });
+}
+
+function handleExportAsync() {
+  chrome.storage.sync.get(null, function(obj) {
+    downloadObjectAsJson(obj, "Omnibox Alias Delux Export File");
+  });
+}
+
+function handleImport() {
+  try {
+    const files = document.getElementById("selectFiles").files;
+    if (files.length <= 0) {
+      return false;
+    }
+
+    var fr = new FileReader();
+
+    fr.onload = function(e) {
+      var result = JSON.parse(e.target.result);
+      clear(result);
+    };
+
+    fr.readAsText(files.item(0));
+  } catch (e) {
+    alert(`Import Faild`);
+  }
+  alert("Import Ended Successfuly");
+}
+
+function downloadObjectAsJson(exportObj, exportName) {
+  var dataStr =
+    "data:text/json;charset=utf-8," +
+    encodeURIComponent(JSON.stringify(exportObj));
+  var downloadAnchorNode = document.createElement("a");
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", exportName + ".json");
+  document.body.appendChild(downloadAnchorNode); // required for firefox
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
 }
 
 function insert(alias, url) {
@@ -109,3 +151,14 @@ _gaq.push(["_trackPageview"]);
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(ga, s);
 })();
+
+window.addEventListener("DOMContentLoaded", event => {
+  console.log("DOM fully loaded and parsed");
+  document
+    .querySelector("#import")
+    .addEventListener("click", () => handleImport());
+
+  document
+    .querySelector("#export")
+    .addEventListener("click", () => handleExportAsync());
+});
