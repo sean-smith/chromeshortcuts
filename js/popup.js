@@ -1,11 +1,6 @@
 $(function() {
   get();
 
-  $(".removeBtn").click(function(e) {
-    console.log(e.target);
-    //remove();
-  });
-
   $("#clear").click(function() {
     clear();
   });
@@ -24,7 +19,7 @@ $(function() {
 
   $("#github").click(function() {
     chrome.tabs.update({
-      url: "https://github.com/sean-smith/chrome_shortcuts"
+      url: "https://github.com/tamir-nakar/chrome_shortcuts"
     });
     return false;
   });
@@ -37,6 +32,7 @@ $(function() {
     if (alias == "" || url == "") {
       event.preventDefault();
       alert("You must enter an alias and url...");
+      return;
     }
 
     set(alias, url);
@@ -84,7 +80,7 @@ function clear(refillObj) {
 
 function remove(alias) {
   chrome.storage.sync.remove(alias, function() {
-    $("#" + alias).remove();
+    $(`[id='${alias}']`).remove();
   });
 }
 
@@ -104,15 +100,17 @@ function handleImport() {
     var fr = new FileReader();
 
     fr.onload = function(e) {
-      var result = JSON.parse(e.target.result);
-      clear(result);
+      try {
+        var result = JSON.parse(e.target.result);
+        clear(result);
+        alert("Import Ended Successfuly");
+      } catch {
+        alert(`Import Faild`);
+      }
     };
 
     fr.readAsText(files.item(0));
-  } catch (e) {
-    alert(`Import Faild`);
-  }
-  alert("Import Ended Successfuly");
+  } catch (e) {}
 }
 
 function downloadObjectAsJson(exportObj, exportName) {

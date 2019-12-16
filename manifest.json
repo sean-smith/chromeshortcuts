@@ -1,14 +1,14 @@
 {
-  "name": "Chrome Shortcut Manager",
-  "short_name": "Omnibox Alias Delux",
-  "description": "To use, type 'go' into the search bar.",
-  "version": "1.0.1",
+  "name": "Shortcut Manager DELUXE",
+  "short_name": "Omnibox Alias DELUXE",
+  "description": "usage: type 'go' into the search bar.",
+  "version": "2.0.1",
   "permissions": ["storage", "activeTab"],
   "background": {
     "scripts": ["js/background.js"]
   },
   "browser_action": {
-    "default_title": "Omnibox Alias",
+    "default_title": "Omnibox Alias DELUXE",
     "default_icon": "img/terminal_16x16.png",
     "default_popup": "popup.html"
   },
