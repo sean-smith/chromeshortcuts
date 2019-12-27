@@ -2,7 +2,25 @@ $(function() {
   get();
 
   $("#clear").click(function() {
-    clear();
+    swalAlert
+      .fire({
+        title: "Are you sure?",
+        text: "You're about do clear your alias list",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      })
+      .then(result => {
+        if (result.value) {
+          clear();
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+        }
+      });
   });
 
   $("#current").click(function(event) {
@@ -40,6 +58,14 @@ $(function() {
   });
 });
 
+const swalAlert = Swal.mixin({
+  customClass: {
+    confirmButton: "button success",
+    cancelButton: "button danger"
+  },
+  buttonsStyling: false
+});
+
 // Store newly input keys
 function set(alias, url) {
   var obj = {};
@@ -70,23 +96,48 @@ function get() {
 
 function clear(refillObj) {
   chrome.storage.sync.clear(function() {
-    console.log("cleared!");
     if (refillObj) {
       Object.keys(refillObj).forEach(el => set(el, refillObj[el]));
+    }
+    if (!refillObj) {
+      Swal.fire("Success!", "Clear Succedded", "success");
     }
   });
   $("#aliases").html("");
 }
 
 function remove(alias) {
-  chrome.storage.sync.remove(alias, function() {
-    $(`[id='${alias}']`).remove();
-  });
+  swalAlert
+    .fire({
+      title: "Are you sure?",
+      text: `Delete '${alias}' ?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    })
+    .then(result => {
+      if (result.value) {
+        chrome.storage.sync.remove(alias, function() {
+          $(`[id='${alias}']`).remove();
+        });
+        Swal.fire("Success!", `'${alias}' was deleted successfully`, "success");
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+      }
+    });
 }
 
 function handleExportAsync() {
+  const d = new Date();
   chrome.storage.sync.get(null, function(obj) {
-    downloadObjectAsJson(obj, "Omnibox Alias Delux Export File");
+    downloadObjectAsJson(
+      obj,
+      `Aliases Backup ${d.getUTCMonth()}/${d.getUTCDate()}/${d.getUTCFullYear()}`
+    );
   });
 }
 
@@ -103,9 +154,14 @@ function handleImport() {
       try {
         var result = JSON.parse(e.target.result);
         clear(result);
-        alert("Import Ended Successfuly");
+        Swal.fire("Success!", "Improt process ended successfully", "success");
       } catch {
-        alert(`Import Faild`);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text:
+            "Something went wrong! Please make sure to load an '.smd' file and try again"
+        });
       }
     };
 
@@ -119,7 +175,7 @@ function downloadObjectAsJson(exportObj, exportName) {
     encodeURIComponent(JSON.stringify(exportObj));
   var downloadAnchorNode = document.createElement("a");
   downloadAnchorNode.setAttribute("href", dataStr);
-  downloadAnchorNode.setAttribute("download", exportName + ".json");
+  downloadAnchorNode.setAttribute("download", exportName + ".smd");
   document.body.appendChild(downloadAnchorNode); // required for firefox
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
@@ -152,11 +208,15 @@ _gaq.push(["_trackPageview"]);
 
 window.addEventListener("DOMContentLoaded", event => {
   console.log("DOM fully loaded and parsed");
-  document
-    .querySelector("#import")
-    .addEventListener("click", () => handleImport());
+  // document
+  //   .querySelector("#import")
+  //   .addEventListener("click", () => handleImport());
 
   document
     .querySelector("#export")
     .addEventListener("click", () => handleExportAsync());
+
+  document
+    .querySelector("#selectFiles")
+    .addEventListener("change", () => handleImport());
 });

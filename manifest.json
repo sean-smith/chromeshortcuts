@@ -1,14 +1,15 @@
 {
   "name": "Shortcut Manager DELUXE",
-  "short_name": "Omnibox Alias DELUXE",
+  "short_name": "SMD",
   "description": "usage: type 'go' into the search bar.",
-  "version": "2.0.2",
+  "version": "2.1.1",
   "permissions": ["storage", "activeTab"],
   "background": {
     "scripts": ["js/background.js"]
   },
+
   "browser_action": {
-    "default_title": "Omnibox Alias DELUXE",
+    "default_title": "Shortcut Manager DELUXE",
     "default_icon": "img/terminal_16x16.png",
     "default_popup": "popup.html"
   },

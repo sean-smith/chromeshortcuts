@@ -7,6 +7,25 @@ body {
   min-height: 200px;
 }
 
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type="file"] + label {
+  background-color: #000;
+  border-radius: 4rem;
+  color: #fff;
+  display: inline-block;
+  padding-left: 2rem 4rem;
+}
+
 h1 {
   margin-bottom: 1px;
   padding-left: 0;
@@ -102,6 +121,18 @@ h5 {
   border-color: #4cae4c;
   color: #fff;
 }
+
+.button + label {
+  padding: 6px 12px 6px 12px;
+  margin: 5px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #5cb85c;
+  border-radius: 4px;
+  border: 1px solid;
+  border-color: #4cae4c;
+  color: #fff;
+}
 #header {
   margin-bottom: 20px;
 }
@@ -118,11 +149,19 @@ h5 {
   background-color: #9e1a1a;
 }
 
+.warning {
+  background-color: #b3c838;
+  border-color: #93a114;
+}
 .warning:hover {
   background-color: #a2b828;
 }
 
-.warning {
+.warning:hover + label {
+  background-color: #a2b828;
+}
+
+.warning + label {
   background-color: #b3c838;
   border-color: #93a114;
 }
