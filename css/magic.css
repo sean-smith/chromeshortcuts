@@ -71,6 +71,14 @@ body {
 	background-color: #4cae4c;
 }
 
+.red {
+	background-color: #DC3545;
+}
+
+.red:hover {
+	background-color: rgb(187, 46, 60);
+}
+
 input {
 	font-size: 14px;
 	border-radius: 4px;
