@@ -1,4 +1,10 @@
-# Omnibox Alias
+# Chrome Shortcuts
+
+### Getting it Here
+
+<a href="https://chrome.google.com/webstore/detail/custom-chrome-shortcut-ma/ijihchgjhagfhdkhagnmlebpepjlecml?hl=en"><img src="images/chrome_256.png"></a>
+
+### Contributing
 
 To contribute, clone the repo:
 
