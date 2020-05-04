@@ -2,7 +2,7 @@
 	"name": "Custom Chrome Shortcut Manager",
 	"short_name": "Omnibox Alias",
 	"description" : "To use, type 'go' into the search bar.",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"permissions": [
 		"storage",
 		"activeTab"
