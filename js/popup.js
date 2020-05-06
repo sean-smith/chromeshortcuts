@@ -25,7 +25,12 @@ $(function() {
 
 	$("#github").click(function() {
 		chrome.tabs.update({ url: "https://github.com/sean-smith/chromeshortcuts" } );
-		return false; 
+		return false;
+	});
+
+	$("#seanhome").click(function() {
+		chrome.tabs.update({ url: "https://seanssmith.net" } );
+		return false;
 	});
 
 	// Form submission handler
