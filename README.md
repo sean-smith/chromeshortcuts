@@ -18,4 +18,4 @@ Bugfixes:
 
 Text overflows
 
-Please continue to contribue to this wonderful extension!
+Fell free to contribue to this wonderful extension, and pass the good work around!
