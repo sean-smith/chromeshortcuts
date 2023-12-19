@@ -1,7 +1,15 @@
-$(function() {
+$(function () {
+  Swal.fire({
+    title: "Important Announcement",
+    html: `Dear Shortcut Manager DELUXE Users,<br>
+    We regret to inform you that Shortcut Manager DELUXE will no longer be supported and will be taken down by June 2024.<br><br>We invite you to explore Hive, our more advanced and modern app, available <a href='https://chromewebstore.google.com/detail/hive-bookmarks/mgpaacedpjkjfnmjhbfiolffpmpdebdo?utm_source=smdapp' target='_blank'>HERE</a>. <br><br>Hive offers enhanced features, improved performance, and a user-friendly interface.<br><br> To ensure a smooth transition, we recommend exporting your aliases and importing them to Hive.  Thank you for your understanding, and for any assistance, contact us <a href="mailto:hive.ext@gmail.com"> HERE </a>
+    .<br><br>
+    Best,
+    Hive team <br> <img src="https://lh3.googleusercontent.com/DoT1F3h0kbD_QCTmndj4UR8jjavckLvXfh3D9a9MhOaF2lg14c-Q9YDWlv92TADeyqwYG2awG3LLMggzpXulS2UsFQU=s60">`,
+  });
   get();
 
-  $("#clear").click(function() {
+  $("#clear").click(function () {
     swalAlert
       .fire({
         title: "Are you sure?",
@@ -10,9 +18,9 @@ $(function() {
         showCancelButton: true,
         confirmButtonText: "Yes, delete it!",
         cancelButtonText: "No, cancel!",
-        reverseButtons: true
+        reverseButtons: true,
       })
-      .then(result => {
+      .then((result) => {
         if (result.value) {
           clear();
         } else if (
@@ -23,27 +31,28 @@ $(function() {
       });
   });
 
-  $("#current").click(function(event) {
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, function(
-      tabs
-    ) {
-      if (tabs[0] != null) {
-        $("#alias").val(tabs[0].title);
-        $("#url").val(tabs[0].url);
+  $("#current").click(function (event) {
+    chrome.tabs.query(
+      { active: true, lastFocusedWindow: true },
+      function (tabs) {
+        if (tabs[0] != null) {
+          $("#alias").val(tabs[0].title);
+          $("#url").val(tabs[0].url);
+        }
+        $("#alias").select();
       }
-      $("#alias").select();
-    });
+    );
   });
 
-  $("#github").click(function() {
+  $("#github").click(function () {
     chrome.tabs.update({
-      url: "https://github.com/tamir-nakar/chrome_shortcuts"
+      url: "https://github.com/tamir-nakar/chrome_shortcuts",
     });
     return false;
   });
 
   // Form submission handler
-  $("#new_alias").submit(function(event) {
+  $("#new_alias").submit(function (event) {
     var alias = $("#alias").val();
     var url = $("#url").val();
 
@@ -61,22 +70,22 @@ $(function() {
 const swalAlert = Swal.mixin({
   customClass: {
     confirmButton: "button success",
-    cancelButton: "button danger"
+    cancelButton: "button danger",
   },
-  buttonsStyling: false
+  buttonsStyling: false,
 });
 
 // Store newly input keys
 function set(alias, url) {
   var obj = {};
   obj[alias] = url;
-  chrome.storage.sync.set(obj, function() {
+  chrome.storage.sync.set(obj, function () {
     $("#alias").val("");
     $("#url").val("");
   });
 }
 
-chrome.storage.onChanged.addListener(function(changes, namespace) {
+chrome.storage.onChanged.addListener(function (changes, namespace) {
   for (key in changes) {
     var storageChange = changes[key];
     if (storageChange.newValue != null) {
@@ -87,17 +96,19 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 
 // Get keys and display
 function get() {
-  chrome.storage.sync.get(null, function(obj) {
+  chrome.storage.sync.get(null, function (obj) {
     for (o in obj) {
       insert(o, obj[o]);
     }
+    insert('Get Hive', 'https://chromewebstore.google.com/detail/hive-bookmarks/mgpaacedpjkjfnmjhbfiolffpmpdebdo')
+    insert('Hive on Facebook', 'https://www.facebook.com/Hive.bookmarks')
   });
 }
 
 function clear(refillObj) {
-  chrome.storage.sync.clear(function() {
+  chrome.storage.sync.clear(function () {
     if (refillObj) {
-      Object.keys(refillObj).forEach(el => set(el, refillObj[el]));
+      Object.keys(refillObj).forEach((el) => set(el, refillObj[el]));
     }
     if (!refillObj) {
       Swal.fire("Success!", "Clear Succedded", "success");
@@ -115,11 +126,11 @@ function remove(alias) {
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
       cancelButtonText: "No, cancel!",
-      reverseButtons: true
+      reverseButtons: true,
     })
-    .then(result => {
+    .then((result) => {
       if (result.value) {
-        chrome.storage.sync.remove(alias, function() {
+        chrome.storage.sync.remove(alias, function () {
           $(`[id='${alias}']`).remove();
         });
         Swal.fire("Success!", `'${alias}' was deleted successfully`, "success");
@@ -133,7 +144,7 @@ function remove(alias) {
 
 function handleExportAsync() {
   const d = new Date();
-  chrome.storage.sync.get(null, function(obj) {
+  chrome.storage.sync.get(null, function (obj) {
     downloadObjectAsJson(
       obj,
       `Aliases Backup ${d.getUTCMonth()}/${d.getUTCDate()}/${d.getUTCFullYear()}`
@@ -150,7 +161,7 @@ function handleImport() {
 
     var fr = new FileReader();
 
-    fr.onload = function(e) {
+    fr.onload = function (e) {
       try {
         var result = JSON.parse(e.target.result);
         clear(result);
@@ -159,8 +170,7 @@ function handleImport() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text:
-            "Something went wrong! Please make sure to load an '.smd' file and try again"
+          text: "Something went wrong! Please make sure to load an '.smd' file and try again",
         });
       }
     };
@@ -197,7 +207,7 @@ var _gaq = _gaq || [];
 _gaq.push(["_setAccount", "UA-91305548-1"]);
 _gaq.push(["_trackPageview"]);
 
-(function() {
+(function () {
   var ga = document.createElement("script");
   ga.type = "text/javascript";
   ga.async = true;
@@ -206,7 +216,7 @@ _gaq.push(["_trackPageview"]);
   s.parentNode.insertBefore(ga, s);
 })();
 
-window.addEventListener("DOMContentLoaded", event => {
+window.addEventListener("DOMContentLoaded", (event) => {
   console.log("DOM fully loaded and parsed");
   // document
   //   .querySelector("#import")

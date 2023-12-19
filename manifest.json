@@ -2,7 +2,7 @@
   "name": "Shortcut Manager DELUXE",
   "short_name": "SMD",
   "description": "usage: type 'go' into the search bar.",
-  "version": "2.1.1",
+  "version": "2.2.2",
   "permissions": ["storage", "activeTab"],
   "background": {
     "scripts": ["js/background.js"]
