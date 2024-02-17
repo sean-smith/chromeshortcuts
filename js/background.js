@@ -62,7 +62,7 @@ chrome.omnibox.onInputEntered.addListener(
 // Starting input
 chrome.omnibox.onInputStarted.addListener(function() {
   chrome.storage.sync.get(null, function(obj) {
-    for (o in obj) {
+    for (let o in obj) {
       aliases[o] = obj[o];
     }
   });
