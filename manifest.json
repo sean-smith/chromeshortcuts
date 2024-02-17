@@ -24,6 +24,6 @@
   "manifest_version": 3,
   "content_security_policy":{
   
-    "extension_page":  "https://ssl.google-analytics.com"
+    "extension_page":  ""
   }
 }
