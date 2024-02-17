@@ -71,6 +71,22 @@ body {
 	background-color: #4cae4c;
 }
 
+.button-export {
+	padding: 6px 12px 6px 12px;
+	margin: 5px;
+	font-size: 14px;
+	text-align: center;
+	background-color: #5cabb8;
+	border-radius: 4px;
+	border: 1px solid;
+	border-color:#00a6b7;
+	color: #fff;
+}
+
+.button-export:hover {
+	background-color: #598abb;
+}
+
 input {
 	font-size: 14px;
 	border-radius: 4px;
