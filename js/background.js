@@ -6,7 +6,10 @@
 var aliases = {};
 
 chrome.storage.sync.get(null, function(obj) {
-  for (o in obj) {
+  for (let o in obj) {
+    if(o === '_settings_'){
+      continue
+    }
     aliases[o] = obj[o];
   }
 });
@@ -63,6 +66,9 @@ chrome.omnibox.onInputEntered.addListener(
 chrome.omnibox.onInputStarted.addListener(function() {
   chrome.storage.sync.get(null, function(obj) {
     for (let o in obj) {
+      if(o === '_settings_'){
+        continue
+      }
       aliases[o] = obj[o];
     }
   });

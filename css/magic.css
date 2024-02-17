@@ -1,11 +1,11 @@
 
 body {
-	height: 450px;
+	height: 540px;
 	width: 450px;
 	font-family: 'Lato', sans-serif;
 	font-size: 14px;
 }
-
+.swal2-popup { font-size: 15px ! important; }
 .pill {
 	padding: 6px 12px 6px 12px;
 	margin: 5px;
