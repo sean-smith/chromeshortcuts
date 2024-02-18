@@ -47,8 +47,6 @@ $(function () {
   });
 
 
-	});
-
 	$("#github").click(function() {
 		chrome.tabs.update({ url: "https://github.com/sean-smith/chromeshortcuts" } );
 		return false;
