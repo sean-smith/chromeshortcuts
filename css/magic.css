@@ -1,11 +1,11 @@
 
 body {
-	height: 450px;
+	height: 540px;
 	width: 450px;
 	font-family: 'Lato', sans-serif;
 	font-size: 14px;
 }
-
+.swal2-popup { font-size: 15px ! important; }
 .pill {
 	padding: 6px 12px 6px 12px;
 	margin: 5px;
@@ -72,12 +72,29 @@ body {
 	background-color: #4cae4c;
 }
 
+
+.button-export {
+	padding: 6px 12px 6px 12px;
+	margin: 5px;
+	font-size: 14px;
+	text-align: center;
+	background-color: #5cabb8;
+	border-radius: 4px;
+	border: 1px solid;
+	border-color:#00a6b7;
+	color: #fff;
+}
+
+.button-export:hover {
+	background-color: #598abb;
+
 .red {
 	background-color: #DC3545;
 }
 
 .red:hover {
 	background-color: rgb(187, 46, 60);
+
 }
 
 input {
