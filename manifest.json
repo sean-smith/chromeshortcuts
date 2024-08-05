@@ -2,13 +2,14 @@
   "name": "Shortcut Manager DELUXE",
   "short_name": "SMD",
   "description": "usage: type 'go' into the search bar.",
-  "version": "2.5.6",
+  "version": "2.6.0",
   "permissions": ["storage", "activeTab"],
   "background": {
-    "scripts": ["js/background.js"]
+    "service_worker": "js/background.js",
+    "type": "module"
   },
 
-  "browser_action": {
+  "action": {
     "default_title": "Shortcut Manager DELUXE",
     "default_icon": "img/terminal_16x16.png",
     "default_popup": "popup.html"
@@ -19,6 +20,8 @@
     "48": "img/terminal_48x48.png",
     "128": "img/terminal_128x128.png"
   },
-  "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'"
+  "manifest_version": 3,
+  "content_security_policy": {
+    "extension_page":  "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'"
+  }
 }
