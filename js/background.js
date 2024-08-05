@@ -6,7 +6,7 @@
 var aliases = {};
 
 chrome.storage.sync.get(null, function(obj) {
-  for (o in obj) {
+  for (let o in obj) {
     aliases[o] = obj[o];
   }
 });
@@ -18,7 +18,7 @@ var search_url = /https:\/\/www\.google\.com\/search\?q=(\w+)&/;
 // On input changed, call this
 chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
   var suggestions = [];
-  for (key in aliases) {
+  for (let key in aliases) {
     if (key.startsWith(text) || text == "") {
       var desc = `<match>${text}: </match><dim>${key} → </dim><url>${aliases[key]}</url>`;
       suggestions.push({ content: aliases[key], description: desc });
@@ -58,7 +58,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 // Starting input
 chrome.omnibox.onInputStarted.addListener(function() {
   chrome.storage.sync.get(null, function(obj) {
-    for (o in obj) {
+    for (let o in obj) {
       aliases[o] = obj[o];
     }
   });

@@ -2,7 +2,7 @@ $(function () {
   Swal.fire({
     title: "Important Announcement",
     html: `Dear Shortcut Manager DELUXE Users,<br>
-    We regret to inform you that Shortcut Manager DELUXE will no longer be supported and will be taken down by June 2024.<br><br>We invite you to explore Hive, our more advanced and modern app, available <a href='https://chromewebstore.google.com/detail/hive-bookmarks/mgpaacedpjkjfnmjhbfiolffpmpdebdo?utm_source=smdapp' target='_blank'>HERE</a>. <br><br>Hive offers enhanced features, improved performance, and a user-friendly interface.<br><br> To ensure a smooth transition, we recommend exporting your aliases and importing them to Hive.<br> <a href="https://www.youtube.com/watch?v=diSAS294hFY" target="_blank">Here is a step-by-step video guide of how to migrate to Hive </a>.  Thank you for your understanding, and for any assistance, contact us <a href="mailto:hive.ext@gmail.com"> HERE </a>
+    We regret to inform you that Shortcut Manager DELUXE is no longer supported.<br><br>We invite you to explore Hive available <a href='https://chromewebstore.google.com/detail/hive-bookmarks/mgpaacedpjkjfnmjhbfiolffpmpdebdo?utm_source=smdapp' target='_blank'>HERE</a>. <br><br>Hive offers enhanced features, improved performance, and a user-friendly interface.<br><br> To ensure a smooth transition, we recommend exporting your aliases and importing them to Hive.<br> <a href="https://www.youtube.com/watch?v=diSAS294hFY" target="_blank">Here is a step-by-step video guide of how to migrate to Hive </a>.  Thank you for your understanding, and for any assistance, contact us <a href="mailto:hive.ext@gmail.com"> HERE </a>
     .<br><br>
     Best,
     Hive team <br> <img src="https://lh3.googleusercontent.com/DoT1F3h0kbD_QCTmndj4UR8jjavckLvXfh3D9a9MhOaF2lg14c-Q9YDWlv92TADeyqwYG2awG3LLMggzpXulS2UsFQU=s60">`,
@@ -203,18 +203,6 @@ function insert(alias, url) {
   $("#aliases").append(divElemToAdd);
 }
 
-var _gaq = _gaq || [];
-_gaq.push(["_setAccount", "UA-91305548-1"]);
-_gaq.push(["_trackPageview"]);
-
-(function () {
-  var ga = document.createElement("script");
-  ga.type = "text/javascript";
-  ga.async = true;
-  ga.src = "https://ssl.google-analytics.com/ga.js";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(ga, s);
-})();
 
 window.addEventListener("DOMContentLoaded", (event) => {
   console.log("DOM fully loaded and parsed");
